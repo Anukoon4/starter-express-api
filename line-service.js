@@ -1,5 +1,5 @@
 const axios = require("axios");
-const token = "K64b7iFWwHcqAvJBUPMZHO330Gt1pIShsK8MoLyvJbR";
+const token = process.env.LINE_TOKEN;
 const url = "https://notify-api.line.me/api/notify";
 const FormData = require("form-data");
 
