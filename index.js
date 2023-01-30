@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 app.post("/ae", (req, res) => {
   const { body } = req;
   const { message = "" } = body;
+  console.log("message :>> ", message);
   let resMessage = "success";
   if (message) {
     lineService.SendToLineNotify(message, AE);
@@ -31,23 +32,26 @@ app.post("/ae", (req, res) => {
   return res.send({
     status: 200,
     message: resMessage,
+    req_message: message,
   });
 });
 
 app.post("/mut", (req, res) => {
-    const { body } = req;
-    const { message = "" } = body;
-    let resMessage = "success";
-    if (message) {
-      lineService.SendToLineNotify(message, MUT);
-    } else {
-      resMessage = "not found Message";
-    }
-    return res.send({
-      status: 200,
-      message: resMessage,
-    });
+  const { body } = req;
+  const { message = "" } = body;
+  let resMessage = "success";
+  console.log("message :>> ", message);
+  if (message) {
+    lineService.SendToLineNotify(message, MUT);
+  } else {
+    resMessage = "not found Message";
+  }
+  return res.send({
+    status: 200,
+    message: resMessage,
+    req_message: message,
   });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
